@@ -27,10 +27,25 @@ class TestUser(unittest.TestCase):
 
     def test_save_User(self):
         """
-        test save user login and create contact and if its save in User list
+        test save user login and create user and if its save in User list
         """  
         self.new_user.save_user()#saves the new user
         self.assertEqual(len(User.user_list),1)
+
+    def test_save_Credentials(self):
+        """
+        test save credentials and create list  if it saves Credentials
+        """
+        self.new_credentials.save_credentials()#saves new credentials
+        self.assertEqual(len(Credentials.credentials_list),1)
+
+
+    def test_save_multiple_credentials(self):
+        
+
+
+
+
 if __name__ == '__main__':
     unittest.main()  
 
