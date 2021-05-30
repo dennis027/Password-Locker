@@ -1,7 +1,16 @@
 class User:
     "generate a class for the users"
+    user_list = []  #user list
+    def save_user(self):
+        """
+        saves new user credentials into contact list
+        """
+        User.user_list.append(self)
     def __init__(self, create_account,login):
-        self.name = create_account
+        """
+        helping us define properties of our users
+        """
+        self.create_account = create_account
         self.login = login
 
 
@@ -9,5 +18,8 @@ class User:
 class Credentials:
     "generates a class for the credentials"
     def __init__(self,username,password):
+        """
+        helping us denine proprert of our credentials
+        """
         self.username = username
         self.password = password
