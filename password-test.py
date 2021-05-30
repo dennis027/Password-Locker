@@ -1,3 +1,4 @@
+from typing import ClassVar
 import unittest
 from password import User
 from password import Credentials
@@ -69,6 +70,16 @@ class TestUser(unittest.TestCase):
         self.new_credentials.delete_credentials()#delete credential
         self.assertEqual(len(Credentials.credentials_list),0)
 
+
+    def test_find_credentials_by_name(self):
+        """
+        test to test_find_credentials_by_name and display information
+        """ 
+        self.new_credentials.save_credentials()
+        test_credentials = Credentials("kimani","mee") #new credentials_list
+        test_credentials.save_credentials()
+        found_credentials = Credentials("kimani")
+        self.assertEquals(found_credentials,found_credentials.password,test_credentials.password)
 
 
 if __name__ == '__main__':
