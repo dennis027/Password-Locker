@@ -23,6 +23,13 @@ class Credentials:
         saves new user credentilas into contact user_list
         """
         Credentials.credentials_list.append(self)
+
+    def delete_credentials(self):
+        """
+         deletes credentials from credentials_list    
+        """ 
+        Credentials.credentials_list.remove(self)
+
     def __init__(self,username,password):
         """
         helping us denine proprert of our credentials
