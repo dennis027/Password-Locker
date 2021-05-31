@@ -61,7 +61,16 @@ class Credentials:
         """
         for credentials in cls.credentials_list: 
             if credentials.username == username:
-                return credentials.password   
+                return credentials.password  
+
+    @classmethod
+    def credentials_exist(cls, username):
+        """
+        method that check if a contact exist from thr credentials list
+        """ 
+        for credentials in cls.credentials_list: 
+            if credentials.username == username:
+                return True            
 
     def __init__(self,username,password):    
         self.username = username

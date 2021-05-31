@@ -49,15 +49,17 @@ class TestUser(unittest.TestCase):
         """
         self.new_credentials.save_credentials()
         test_credentials = Credentials ("kimani","test123")
-        self.assertEqual(len(Credentials.credentials_list),1)  ##supposed to be 2
+        test_credentials.save_credentials()
+        self.assertEqual(len(Credentials.credentials_list),2)  ##supposed to be 2
     def test_delete_credential(self):
         '''
         test_delete_credential to test if we can remove a credential from our credential list
         '''
         self.new_credentials.save_credentials()
         test_credentials = Credentials ("kimani","test123")
+        test_credentials.save_credentials()
         # self.new_credentials.delete_credentials()
-        self.assertEqual(len(Credentials.credentials_list),1)
+        self.assertEqual(len(Credentials.credentials_list),2)
 
     # def test_find_credentials_by_name(self):
     #     """
@@ -69,8 +71,15 @@ class TestUser(unittest.TestCase):
     #     found_credentials = Credentials.find_by_username("kimani")
     #     self.assertEquals(found_credentials.password, test_credentials.password)
 
-
-
+    def test_credentials_exist(self):
+        """
+        test to check if we can returna Boolean if we cannot find contact
+        """
+        self.new_credentials.save_credentials()
+        test_credentials = Credentials("kimani","test123")
+        test_credentials.save_credentials()
+        credentials_exist=Credentials.credentials_exist("kimani")
+        self.assertTrue(credentials_exist)
 
 
 
