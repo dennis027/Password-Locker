@@ -81,6 +81,12 @@ class TestUser(unittest.TestCase):
         credentials_exist=Credentials.credentials_exist("kimani")
         self.assertTrue(credentials_exist)
 
+    def test_display_all_credentials_(self):
+        """
+        method to return all credentials
+        """ 
+        self.assertEqual(Credentials.display_credentials(),Credentials.credentials_list)   
+
 
 
 if __name__ == '__main__':

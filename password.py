@@ -70,7 +70,14 @@ class Credentials:
         """ 
         for credentials in cls.credentials_list: 
             if credentials.username == username:
-                return True            
+                return True
+
+    @classmethod
+    def display_credentials(cls):
+        """
+        method returning the credentials list
+        """ 
+        return cls.credentials_list                       
 
     def __init__(self,username,password):    
         self.username = username
