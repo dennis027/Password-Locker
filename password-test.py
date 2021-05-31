@@ -1,5 +1,6 @@
 import unittest # Importing the unittest module
 from password import User,Credentials # Importing the contact class
+# import pyperclip
 class TestUser(unittest.TestCase):
     """
     test class that defines test case of Userclass
@@ -87,6 +88,13 @@ class TestUser(unittest.TestCase):
         """ 
         self.assertEqual(Credentials.display_credentials(),Credentials.credentials_list)   
 
+    # def test_copy_credentials(self):
+    #     """
+    #     test to confirm that we are copying credentials
+    #     """
+    #     self.new_credentials.save_credentials()
+    #     Credentials.copy_password("kimani")
+    #     self.assertEqual(self.new_credentials.password,pyperclip.paste())
 
 
 if __name__ == '__main__':
