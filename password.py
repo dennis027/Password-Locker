@@ -1,3 +1,4 @@
+# import pyperclip
 class User:
     """generates a class user"""
     user_list = [] # empty user list
@@ -77,7 +78,12 @@ class Credentials:
         """
         method returning the credentials list
         """ 
-        return cls.credentials_list                       
+        return cls.credentials_list   
+
+    # @classmethod
+    #     def copy_password(cls, password):
+    #         credentials_found = Credentials.find_by_username(username)
+    #         pyperclip.copy(credentials_found, password)                       
 
     def __init__(self,username,password):    
         self.username = username

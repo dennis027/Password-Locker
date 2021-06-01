@@ -53,3 +53,64 @@ def display_credentials():
 
 def main(): 
 
+    print("Hello, welcome to the password keeper app are you a new user whats your name? ")
+    # if print==("yes"):
+    #     print("imput username")
+    #     print("imput password")
+    #     elif ==("no")
+    #     print("imput username")
+    #     print("imput password")
+    user_name = input()
+    print(f"hello {user_name} what would you like to do")
+    print("\n")
+
+    while True:
+        print("use these short codes cc to create credentials,dc to display credentials and fc to find credentials,gb for goodbyee")
+        print("\n")
+        short_code=input().lower()
+        if short_code=='cc':
+            print("New Credentials")
+            print("-"*10) 
+            print("username=......")  
+            username=input()
+            print("password=......") 
+            password=input()
+
+            save_credentials(create_credentials(username,password))#creates and saves new username and copy_password
+            print('\n')
+            print(f"New Credentials {username} {password} was created")
+            print('\n')
+            print(f"New Credentials {username} {password} was created")
+            print('\n')
+        elif short_code == "dc":
+            if display_credentials():
+                print("here is your list of credentials")
+                print('\n')
+                for credentials in display_credentials():
+                    print(f"{credentials.username}:{credentials.password}")
+                    print('\n')
+                else:
+                    print("your contact list is empty")
+
+        elif short_code == "fc":
+            print("enter the username you want to search for password")
+            search_username=input()
+            if check_existing_credentials(search_username):
+                search_credential =find_credentials(search_username)
+                print(f"search_credential.username")
+                print('-' *20)
+                print(f"your password for the credential is{search_credential.password}")
+            else:
+                print("that does not exist")
+        elif short_code == "gb":
+            print("byeeee..........")  
+            break
+        else:
+             ("i really didnt get that prease repeat yourself")      
+
+
+
+
+if __name__ == '__main__':
+    main()
+
