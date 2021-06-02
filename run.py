@@ -1,5 +1,8 @@
 #!/usr/bin/env python3.6
 from password import User,Credentials
+from random import *
+
+
 
 def create_user(create_account,login):
     '''
@@ -42,6 +45,51 @@ def display_credentials():
     Function that returns all the saved credentials
     ''' 
     return Credentials.display_credentials()
+
+
+def response_none(question):
+    """Users response on whether to generate password or not"""
+    response = None
+    while response not in ("y", "n"):
+        response = input(question).lower()
+    return response
+
+
+def main():
+    print("****************")
+    print('\n')
+    print(f"Welcome to Pass Lock,helping you save and remember your passwords is our priority.")
+    print('\n')
+    print("****************")
+    print('\n')
+    print("Please create Account:")
+    print('\n')
+
+    print("Enter your new username")
+    username = input()
+    print("Enter your new password")
+    password = input()
+    save_user(create_user(username, password))
+    print('\n')
+    
+
+    print("****************")
+    print('\n')
+    print(f"Hello {username}, Thank you for creating an account with us.")
+    print('\n')
+    print("****************")
+
+    print("Login")
+    print('\n')
+
+    print("Enter your username:")
+    username = input()
+
+    print("Enter your password:")
+    password = input()
+    print('\n')
+
+  
 # def copy_password():
 #     '''
 #     function that copies the password
@@ -53,16 +101,10 @@ def display_credentials():
 
 def main(): 
 
-    print("Hello, welcome to the password keeper app are you a new user whats your name? ")
-    # if print==("yes"):
-    #     print("imput username")
-    #     print("imput password")
-    #     elif ==("no")
-    #     print("imput username")
-    #     print("imput password")
-    user_name = input()
-    print(f"hello {user_name} what would you like to do")
-    print("\n")
+  
+    # user_name = input()
+    # print(f"hello {user_name} what would you like to do")
+    # print("\n")
 
     while True:
         print("use these short codes cc to create credentials,dc to display credentials and fc to find credentials,gb for goodbyee")
@@ -74,6 +116,15 @@ def main():
             print("username=......")  
             username=input()
             print("password=......") 
+            generate = response_none(
+            #check if user want to be given a new password
+            if generate =="y":
+                characters = string.ascii_letters + string.punctuation  + string.digits
+                password =  "".join(choice(characters) for x in range(randint(8, 16)))
+                print password
+            else:    
+
+
             password=input()
 
             save_credentials(create_credentials(username,password))#creates and saves new username and copy_password
@@ -90,7 +141,7 @@ def main():
                     print(f"{credentials.username}:{credentials.password}")
                     print('\n')
                 else:
-                    print("your contact list is empty")
+                    print("your credentials list is empty")
 
         elif short_code == "fc":
             print("enter the username you want to search for password")
