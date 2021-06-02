@@ -78,7 +78,7 @@ class Credentials:
         """
         method returning the credentials list
         """ 
-        return cls.credentials_list   
+        return cls.credentials_list    
 
     # @classmethod
     #     def copy_password(cls, password):
