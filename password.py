@@ -2,26 +2,50 @@
 class User:
     """generates a class user"""
     user_list = [] # empty user list
-    def save_user(self):
+    def __init__(self, first_name, last_name, phone_number, email):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.phone_number = phone_number
+        self.email = email
 
-        '''
-        save_user method saves user objects into user_list
-        '''
+    def save_user_details(self):
+        """
+        save_contact method saves contact objects into user_array
+        """
+        User.users_array.append(self)
 
-        User.user_list.append(self)
+    @classmethod
+    def display_users(cls):
+        """
+        method that returns the class array
+        """
+        return cls.users_array
 
 
+class Credential:
+    """
+    a class that generates new credential for users
+    """
+    pass
+    credential_array = []
 
+    def __init__(self, user_name, password, email):
+        self.user_name = user_name
+        self.password = password
+        self.email = email
 
-    def __init__(self,create_account,login):
+    def save_credential(self):
+        """
+        save_contact method saves credentials objects into credential_array
+        """
+        Credential.credential_array.append(self)
 
-        '''
-        __init__ method that helps us define properties for our objects.
-
-       '''
-        self.create_account = create_account
-        self.login = login
-
+    @classmethod
+    def display_credential(cls):
+        """
+        method that returns the credential array
+        """
+        return cls.credential_array
 
 
 

@@ -1,167 +1,161 @@
 #!/usr/bin/env python3.6
-from password import User,Credentials
-from random import *
+from password import User
+from password import Credential
+import random
 
 
-
-def create_user(create_account,login):
-    '''
-    function to determine user
-    '''
-    new_user = User(create_account,login)
+def create_user(fname, lname, phone, email):
+    """
+    Function to create a new user
+    """
+    new_user = User(fname, lname, phone, email)
     return new_user
 
+
+def create_credential(uname, pword, email):
+    """
+    Function to create new user credentials
+    """
+    new_credential = Credential(uname, pword, email)
+    return new_credential
+
+
 def save_user(user):
-    '''
-    function to save the user
-    '''  
-    user.save_user()  
-
-def create_credentials(username,password):
-    '''
-    function to create new credentials
-    ''' 
-    new_credentials= Credentials(username,password)
-    return new_credentials   
-def save_credentials(credentials):
-    '''
-    function to save the user
-    '''  
-    credentials.save_credentials()      
-
-def del_credentials(credentials):
-    '''
-    Function to delete_credentials
-    ''' 
-    credentials.delete_credentials() 
-def check_existing_credentials(username):  
-    '''
-    Function that check if a contact exists and returns a boolean
-    ''' 
-    return Credentials.credentials_exist(username)
-
-def display_credentials(): 
-    '''
-    Function that returns all the saved credentials
-    ''' 
-    return Credentials.display_credentials()
+    """
+    Function to save user
+    """
+    user.save_user_details()
 
 
-def response_none(question):
-    """Users response on whether to generate password or not"""
-    response = None
-    while response not in ("y", "n"):
-        response = input(question).lower()
-    return response
+def save_cred(credential):
+    """
+    Function to save user credentials
+    """
+    credential.save_credential()
+
+
+def del_user(user):
+    """
+    Function to delete a user
+    """
+    user.delete_user()
+
+
+def del_cred(credential):
+    """
+    Function to delete all users credentials
+    """
+    credential.delete_credential()
+
+
+def display_user():
+    """
+    Function that returns saved users
+    """
+    return User.display_users()
+
+
+def display_cred():
+    """
+    function that returns saved user credentials
+    """
+    return Credential.display_credential()
 
 
 def main():
-    print("****************")
-    print('\n')
-    print(f"Welcome to Pass Lock,helping you save and remember your passwords is our priority.")
-    print('\n')
-    print("****************")
-    print('\n')
-    print("Please create Account:")
-    print('\n')
 
-    print("Enter your new username")
-    username = input()
-    print("Enter your new password")
-    password = input()
-    save_user(create_user(username, password))
-    print('\n')
-    
-
-    print("****************")
-    print('\n')
-    print(f"Hello {username}, Thank you for creating an account with us.")
-    print('\n')
-    print("****************")
-
-    print("Login")
-    print('\n')
-
-    print("Enter your username:")
-    username = input()
-
-    print("Enter your password:")
-    password = input()
-    print('\n')
-
-  
-# def copy_password():
-#     '''
-#     function that copies the password
-#     '''  
-#     return Credentials.copy_password()         
-
-###main function
-
-
-def main(): 
-
-  
-    # user_name = input()
-    # print(f"hello {user_name} what would you like to do")
-    # print("\n")
+    print("Welcome to your Password Locker, choose your path from the list of allowed actions")
 
     while True:
-        print("use these short codes cc to create credentials,dc to display credentials and fc to find credentials,gb for goodbyee")
-        print("\n")
-        short_code=input().lower()
-        if short_code=='cc':
-            print("New Credentials")
-            print("-"*10) 
-            print("username=......")  
-            username=input()
-            print("password=......") 
-            generate = response_none(
-            #check if user want to be given a new password
-            if generate =="y":
-                characters = string.ascii_letters + string.punctuation  + string.digits
-                password =  "".join(choice(characters) for x in range(randint(8, 16)))
-                print password
-            else:    
+        print("Allowed Actions: \n ad - create a new user account with a user-defined password\n ag - create a new user account with a auto-generated password\n da - display all user accounts \n ex -exit the contact list \n")
 
+        short_code = input().lower()
 
-            password=input()
+        if short_code == 'ad':
+            print("New User")
+            print("-"*10)
+            print("Hey There!!! What site do you want to create an account for?")
+            site = input()
+            print(f"Which account do you wish to {site}?")
 
-            save_credentials(create_credentials(username,password))#creates and saves new username and copy_password
+            print("First name ....")
+            f_name = input()
+
+            print("Last name ...")
+            l_name = input()
+
+            print("Phone number ...")
+            p_number = input()
+
+            print("Email address ...")
+            e_address = input()
+
+            print("Enter username ...")
+            user_name = input()
+
+            print("Enter Password ...")
+            pword = input()
+
+            save_user(create_user(f_name, l_name, p_number, e_address))  # create and save new user account.
+            save_cred(create_credential(user_name, pword, e_address))  # create and save a credential listing for the above user
             print('\n')
-            print(f"New Credentials {username} {password} was created")
+            print(f" A new {site} account by {f_name} {l_name} has successfully been created")
+            print(f" The username is {user_name} and the password is {pword}")
             print('\n')
-            print(f"New Credentials {username} {password} was created")
+
+        elif short_code == 'ag':
+            print("New User")
+            print("-" * 10)
+            print("Hey There!!! What site do you want to create an account for?")
+            site = input()
+            print(f"Aah!! So you love {site}?")
+
+            print("First name ....")
+            f_name = input()
+
+            print("Last name ...", )
+            l_name = input()
+
+            print("Phone number ...")
+            p_number = input()
+
+            print("Email address ...")
+            e_address = input()
+
+            print("Enter username ... Hint: a secure password will be generated for you...")
+            user_name = input()
+
+            s = "abcdefghijklmnopqrstuvwxyz01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()?"
+            pword = "".join(random.sample(s, 8))
+
+            save_user(create_user(f_name,l_name,p_number,e_address))  # create and save new user account.
+            save_cred(create_credential(user_name, pword, e_address))  # create and save a credential listing for the above user
             print('\n')
-        elif short_code == "dc":
-            if display_credentials():
-                print("here is your list of credentials")
+            print(f" A new {site} account by {f_name} {l_name} has successfully been created")
+            print(f" The username is {user_name} and the password is {pword}")
+            print('\n')
+
+        elif short_code == 'da':
+
+            if display_user():
+                print("Here is a list of all your user accounts")
                 print('\n')
-                for credentials in display_credentials():
-                    print(f"{credentials.username}:{credentials.password}")
-                    print('\n')
-                else:
-                    print("your credentials list is empty")
 
-        elif short_code == "fc":
-            print("enter the username you want to search for password")
-            search_username=input()
-            if check_existing_credentials(search_username):
-                search_credential =find_credentials(search_username)
-                print(f"search_credential.username")
-                print('-' *20)
-                print(f"your password for the credential is{search_credential.password}")
+                for user in display_user():
+                    print(f"{user.first_name} {user.last_name} has an account for {site}")
+
+                print('\n')
             else:
-                print("that does not exist")
-        elif short_code == "gb":
-            print("byeeee..........")  
+                print('\n')
+                print("You don't seem to have any existing accounts")
+                print('\n')
+
+        elif short_code == "ex":
+            print(":/ See you soon then...")
             break
         else:
-             ("i really didnt get that prease repeat yourself")      
-
-
+            print(" :( Only key in the allowed actions !!")
 
 
 if __name__ == '__main__':
     main()
-
