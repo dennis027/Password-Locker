@@ -20,7 +20,7 @@ def create_credential(uname, pword, email):
     return new_credential
 
 
-def save_user(user):
+def save_user(user): 
     """
     Function to save user
     """
