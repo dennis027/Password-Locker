@@ -12,14 +12,14 @@ class User:
         """
         save_contact method saves contact objects into user_array
         """
-        User.users_array.append(self)
+        User.user_list.append(self)
 
     @classmethod
     def display_users(cls):
         """
         method that returns the class array
         """
-        return cls.users_array
+        return cls.user_list
 
 
 class Credential:
