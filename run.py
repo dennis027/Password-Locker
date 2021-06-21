@@ -64,10 +64,37 @@ def display_cred():
 
 def main():
 
+    print("WELCOME TO PASSWORD LOCKER APP. \n To continue, please enter one of the following short codes: \n ca Create new user Account \n ah-Already have an account? \n ex-to exit the application")
+    short_code=input().lower()
+    if short_code=="ca":
+        print("Create your new user account")
+        print('-'*20)
+        username=input("Enter your Username: ")
+        while True:
+            print("Enter TP to type your own password or AP to generate a random New password from the application")
+            my_password= input().lower()
+            if my_password=='tp':
+                password= input("Enter your preffered password:.. ")
+                break
+            elif my_password=='ag':
+                s = "abcdefghijklmnopqrstuvwxyz01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()?"
+                pword = "".join(random.sample(s, 8))
+                break
+            else:
+                print("Please input a valid password and try again")
+        save_user(create_user(username,password,'phone', 'email'))
+        print('\n')
+        print('*'*50)
+        print('\n')
+        print(f"Your account was created successful,your username is {username} and your password is {password}")
+        print('\n')
+        print('*'*50)        
+
+
     print("Welcome to your Password Locker, choose your path from the list of allowed actions")
 
     while True:
-        print("Allowed Actions: \n ad - create a new user account with a user-defined password\n ag - create a new user account with a auto-generated password\n da - display all user accounts \n ex -exit the contact list \n")
+        print("Allowed Actions: \n ad - create a new user account with a user-defined password\n ag - create a new user account with a auto-generated password\n da - display all user accounts\n fd -search for a credential \cd-deletes a credential \n ex -exit the contact list \n")
 
         short_code = input().lower()
 
@@ -142,7 +169,34 @@ def main():
                 print('\n')
 
                 for user in display_user():
-                    print(f"{user.first_name} {user.last_name} has an account for {site}")
+                    print(f"{user.first_name} {user.last_name} has an account for {site} where username is {username}"and password is {password})
+
+
+        elif short_code=='fd':
+            print("Enter the site name you would wish to search for")     
+            name=input()
+            if find_credentials(name):
+                search_credential=find_credentials(name)
+                print(f"Account name: {search_credential.account_name}")  
+                print('*'*10)
+                print(f"User Name: {search_credential.account_username}.... Password :{search_credential.account_password}")  
+
+            else:
+                print("The credentials you searched for does not exist currently")
+                print('\n')
+
+        elif short_code=='cd':
+            print("Enter the site you want to delete")
+            name=input()
+            if find_credentials(name):
+                search_credential=find_credentials(name)
+                print('\n')
+                search_credential.delete_credentials()
+                print('\n')
+                print(f"Your credentials for {search_credential.account_name} have been deleted successfully")
+
+
+
 
                 print('\n')
             else:

@@ -47,6 +47,28 @@ class Credential:
         """
         return cls.credential_array
 
+    def find_credentials(cls, account_name):
+        '''
+        Method takes in a acount name and returns the credentials that matches that account.
+        Args:
+            acoount name: account name to search for
+        Returns :
+            returns the credentials that matches that account name.
+        '''
+        for credential in cls.credentials_list:
+            if credential.account_name == account_name:
+                return credential  
+    
+
+    def delete_credentials(self):
+        '''
+        delete credentials method deletes credentials saved from the credentials list
+        '''
+        Credentials.credentials_list.remove(self)
+
+
+        
+
 
 
 

@@ -11,7 +11,7 @@ class TestUser(unittest.TestCase):
         """
         setup method helping us run each testcase
         """
-        self.new_user = User(True , False)# creates a contact object
+        self.new_user = User('dennis','kimani','07123','k@gmail.com')# creates a contact object
         self.new_credentials = Credentials("dennis","bandict123")
     
     def tearDown(self):
@@ -25,17 +25,28 @@ class TestUser(unittest.TestCase):
         """
         test_init method checking if object is initialised properly
         """
-        self.assertEqual(self.new_user.create_account,True)
-        self.assertEqual(self.new_user.login,False)
+        # self.assertEqual(self.new_user.create_account,True)
+        # self.assertEqual(self.new_user.login,False)
         self.assertEqual(self.new_credentials.username, "dennis")
         self.assertEqual(self.new_credentials.password,"bandict123")
 
-    def test_save_User(self):
-        """
-        test save user login and create user and if its save in User list
-        """  
-        self.new_user.save_user()#saves the new user
+    
+    def test_save_user(self):
+        '''
+        test case to test if the user is saved into the user list
+        '''
+        self.new_user.save_user_details()
         self.assertEqual(len(User.user_list),1)
+
+    
+    def test_save_multiple_users(self):
+        '''
+        test case to confirm if we can save multiple users
+        '''
+        self.new_user.save_user_details()
+        another_user=User("deman","st.Bandicts",'1234','w@gmail.com')
+        another_user.save_user_details()
+        self.assertEqual(len(User.user_list),2)    
 
     def test_save_Credentials(self):
         """
@@ -43,6 +54,8 @@ class TestUser(unittest.TestCase):
         """
         self.new_credentials.save_credentials()#saves new credentials
         self.assertEqual(len(Credentials.credentials_list),1)
+    
+        
 
     def test_save_multiple_Credentials(self):  
         """
