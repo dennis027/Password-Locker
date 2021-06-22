@@ -1,6 +1,7 @@
 #!/usr/bin/env python3.6
 from password import User
 from password import Credential
+
 import random
 
 
@@ -60,6 +61,12 @@ def display_cred():
     function that returns saved user credentials
     """
     return Credential.display_credential()
+
+def find_credentials():
+    """
+    function that returns search credentials
+    """    
+    return Credential.find_credentials()
 
 
 def main():
@@ -175,7 +182,7 @@ def main():
         elif short_code=='fd':
             print("Enter the site name you would wish to search for")     
             name=input()
-            if find_credentials(name):
+            if  find_credentials(name):
                 search_credential=find_credentials(name)
                 print(f"Account name: {search_credential.account_name}")  
                 print('*'*10)
